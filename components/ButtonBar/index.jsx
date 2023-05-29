@@ -1,9 +1,11 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const AppBar = () => {
   return (
     <View>
-      <Text>Barra botones inferior</Text>
+      <TouchableOpacity>
+        <Text>Reiniar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
