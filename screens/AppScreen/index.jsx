@@ -12,8 +12,8 @@ const RoutesComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tryCon = setInterval(() => {
-      validacionConeccion();
+    const tryCon = setInterval(async () => {
+      await validacionConeccion();
       console.log("Ready");
     }, 10000);
 
@@ -21,16 +21,16 @@ const RoutesComponent = () => {
       try {
         const token = await AsyncStorage.getItem("@token");
 
-        if (token !== null) {
-          const rs = await axios.get(`${ruta}/prueba`, {
-            headers: {
-              token: token,
-            },
-          });
-        }
+        const rs = await axios.get(`${ruta}/prueba`, {
+          headers: {
+            token: token,
+          },
+          timeout: 5000,
+        });
       } catch (error) {
         clearInterval(tryCon);
         Alert.alert("Error de coneccion", "Inicie session de nuevo");
+        await AsyncStorage.clear();
         navigate("/");
       }
     };

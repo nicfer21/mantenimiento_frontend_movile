@@ -75,8 +75,9 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.containerLogin}>
         <View>
+          <Text style={styles.textLogin}>TEXTILERIA Y BORDADURIA</Text>
           <Text style={styles.headerLogin}>SEÑOR DE BURGOS</Text>
-          <Text style={styles.textLogin}>Textileria y bordaduria</Text>
+          <Text style={styles.textLogin}>GESTION DE MANTENIMIENTO</Text>
         </View>
 
         <View style={{ paddingVertical: 10 }}>
@@ -155,6 +156,7 @@ const styles = StyleSheet.create({
   },
   containerLogin: {
     padding: 25,
+    paddingHorizontal: 40,
     borderRadius: 25,
     backgroundColor: "#fff",
     shadowColor: "#000",
@@ -197,7 +199,6 @@ const styles = StyleSheet.create({
   buttonLogin: {
     backgroundColor: "#00bb2d",
     marginTop: 40,
-    marginBottom: 5,
     padding: 10,
     borderRadius: 10,
     shadowColor: "#000",
