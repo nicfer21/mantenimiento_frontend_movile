@@ -8,6 +8,9 @@ import AppBar from "../../components/AppBar";
 import ButtonBar from "../../components/ButtonBar";
 import { ruta } from "../../src/config.js";
 
+import HomeScreen from "../../screens/HomeScreen";
+import UserProfile from "../../screens/UserProfile";
+
 const RoutesComponent = () => {
   const navigate = useNavigate();
 
@@ -27,6 +30,7 @@ const RoutesComponent = () => {
           },
           timeout: 5000,
         });
+        clearInterval(tryCon);
       } catch (error) {
         clearInterval(tryCon);
         Alert.alert("Error de coneccion", "Inicie session de nuevo");
@@ -39,44 +43,11 @@ const RoutesComponent = () => {
   return (
     <View style={styles.container}>
       <AppBar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <View>
-              <Text>Panel 1</Text>
-              <Button
-                title={"Click aca"}
-                onPress={() => {
-                  navigate("/app/mundo2");
-                }}
-              />
-            </View>
-          }
-        />
-        <Route
-          path="/mundo2"
-          element={
-            <View>
-              <Text>Panel 2</Text>
-              <Button
-                title={"Click aca"}
-                onPress={() => {
-                  navigate("/app/");
-                }}
-              />
-              <Button
-                title={"Cerrar sesion"}
-                onPress={async () => {
-                  await AsyncStorage.clear();
-                  navigate("/");
-                }}
-              />
-            </View>
-          }
-        />
-      </Routes>
       <ButtonBar />
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/profile" element={<UserProfile />} />
+      </Routes>
     </View>
   );
 };
@@ -87,7 +58,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFF",
-    flexDirection: "column",
-    justifyContent: "space-between",
   },
 });

@@ -24,11 +24,10 @@ export default AppBar;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#99627A",
+    backgroundColor: "#cccccc",
     paddingTop: Constants.statusBarHeight,
     flexDirection: "column",
     justifyContent: "space-between",
-    borderBottomWidth: 2,
     fontFamily: "notoserif",
   },
   logo: {

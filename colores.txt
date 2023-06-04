@@ -1,5 +1,3 @@
-.color1 { #c6cca5 };
-.color2 { #8ab8a8 };
-.color3 { #6b9997 };
-.color4 { #54787d };
-.color5 { #615145 };
+https://encycolorpedia.es/cccccc
+https://encycolorpedia.es/7f69a5
+https://encycolorpedia.es/b5b8b1
