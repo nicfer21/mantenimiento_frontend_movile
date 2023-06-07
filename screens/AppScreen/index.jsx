@@ -10,6 +10,7 @@ import { ruta } from "../../src/config.js";
 
 import HomeScreen from "../../screens/HomeScreen";
 import UserProfile from "../../screens/UserProfile";
+import colors from "../../src/colors";
 
 const RoutesComponent = () => {
   const navigate = useNavigate();
@@ -43,11 +44,11 @@ const RoutesComponent = () => {
   return (
     <View style={styles.container}>
       <AppBar />
-      <ButtonBar />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/profile" element={<UserProfile />} />
       </Routes>
+      <ButtonBar />
     </View>
   );
 };
@@ -57,6 +58,7 @@ export default RoutesComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: colors.white,
+    justifyContent: "space-between",
   },
 });

@@ -1,2 +1,1 @@
-export const ruta =
-  "https://mantenimientoapirestfull-production.up.railway.app";
+export const ruta = "http://192.168.0.119:5000";

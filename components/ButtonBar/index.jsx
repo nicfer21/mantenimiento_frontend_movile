@@ -8,6 +8,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useEffect } from "react";
+import colors from "../../src/colors";
 
 const ButtonLink = ({ to, title, icon }) => {
   const navigate = useNavigate();
@@ -15,12 +16,12 @@ const ButtonLink = ({ to, title, icon }) => {
   const styleLink =
     useLocation().pathname === to
       ? {
-          color: "#69548e",
+          color: colors.secondary[1],
           typeIcon: "sharp",
           fontW: "bold",
         }
       : {
-          color: "#616161",
+          color: colors.grey[3],
           typeIcon: "outline",
           fontW: "normal",
         };
@@ -68,10 +69,10 @@ export default ButtonBar;
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 5,
-    backgroundColor: "#cccccc",
+    backgroundColor: colors.grey[0],
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    borderColor: "#a7a7a7",
+    borderColor: colors.grey[1],
   },
   button: {
     padding: 5,

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import Constants from "expo-constants";
+import colors from "../../src/colors";
 
 const AppBar = () => {
   return (
@@ -24,11 +25,13 @@ export default AppBar;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#cccccc",
+    backgroundColor: colors.grey[0],
     paddingTop: Constants.statusBarHeight,
     flexDirection: "column",
     justifyContent: "space-between",
     fontFamily: "notoserif",
+    borderBottomWidth: 2,
+    borderBottomColor: colors.grey[1],
   },
   logo: {
     width: 50,
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: "#000",
+    borderColor: colors.grey[5],
   },
   logoWorker: {
     width: 30,

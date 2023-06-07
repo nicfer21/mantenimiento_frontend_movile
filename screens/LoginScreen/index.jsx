@@ -15,6 +15,7 @@ import {
 } from "react-native";
 
 import { ruta } from "../../src/config.js";
+import colors from "../../src/colors.js";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
@@ -134,7 +135,11 @@ const LoginScreen = () => {
           onPress={handleSubmit(onSubmit)}
         >
           <Text
-            style={{ textAlign: "center", color: "#fff", fontWeight: "bold" }}
+            style={{
+              textAlign: "center",
+              color: colors.white,
+              fontWeight: "bold",
+            }}
           >
             INICIAR SESION
           </Text>
@@ -149,7 +154,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#c8c8c8",
+    backgroundColor: colors.grey[0],
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -158,8 +163,8 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingHorizontal: 40,
     borderRadius: 25,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
+    backgroundColor: colors.white,
+    shadowColor: colors.white,
     shadowOffset: {
       width: 12,
       height: 12,
@@ -185,23 +190,23 @@ const styles = StyleSheet.create({
     marginTop: 15,
     padding: 10,
     borderRadius: 25,
-    backgroundColor: "#ccc",
+    backgroundColor: colors.grey[0],
     textAlign: "center",
   },
   textError: {
     fontSize: 10,
     fontWeight: "bold",
-    color: "#ff0000",
+    color: colors.danger,
     textAlign: "center",
     paddingTop: 2,
     paddingBottom: 5,
   },
   buttonLogin: {
-    backgroundColor: "#00bb2d",
+    backgroundColor: colors.primary,
     marginTop: 40,
     padding: 10,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: colors.grey[5],
     shadowOffset: {
       width: 0,
       height: 2,
