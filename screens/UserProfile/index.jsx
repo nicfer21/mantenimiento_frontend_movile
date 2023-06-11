@@ -46,9 +46,9 @@ const UserProfile = () => {
 
   const cerrarSession = async () => {
     Alert.alert("Cerras sesión", "¿Está seguro de cerrar sesión", [
-      { text: "Cancelar", style: "cancel" },
+      { text: "No", style: "cancel" },
       {
-        text: "Cerrar sesion",
+        text: "Si",
         style: "destructive",
         onPress: async () => {
           await AsyncStorage.clear();

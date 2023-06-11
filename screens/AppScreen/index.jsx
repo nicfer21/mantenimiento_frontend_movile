@@ -10,6 +10,7 @@ import { ruta } from "../../src/config.js";
 
 import HomeScreen from "../../screens/HomeScreen";
 import UserProfile from "../../screens/UserProfile";
+import MachineScreen from "../../screens/MachineScreen";
 import colors from "../../src/colors";
 
 const RoutesComponent = () => {
@@ -47,6 +48,7 @@ const RoutesComponent = () => {
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/machine" element={<MachineScreen />} />
       </Routes>
       <ButtonBar />
     </View>

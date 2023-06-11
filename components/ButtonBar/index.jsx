@@ -12,7 +12,6 @@ import colors from "../../src/colors";
 
 const ButtonLink = ({ to, title, icon }) => {
   const navigate = useNavigate();
-
   const styleLink =
     useLocation().pathname === to
       ? {
@@ -58,7 +57,19 @@ const ButtonBar = () => {
     <View style={styles.container}>
       <ScrollView horizontal>
         <ButtonLink to={"/app/"} title={"Inicio"} icon={"home"} />
-        <ButtonLink to={"/app/profile"} title={"Perfil"} icon={"md-person"} />
+        <ButtonLink to={"/app/machine/"} title={"Maquinas"} icon={"cube"} />
+        <ButtonLink
+          to={"/app/setrequest/"}
+          title={"Solicitar"}
+          icon={"document"}
+        />
+        <ButtonLink
+          to={"/app/viewrequest/"}
+          title={"Solicitudes"}
+          icon={"documents"}
+        />
+
+        <ButtonLink to={"/app/profile/"} title={"Perfil"} icon={"md-person"} />
       </ScrollView>
     </View>
   );
@@ -76,7 +87,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    width: 60,
+    width: 65,
     alignItems: "center",
   },
 });
