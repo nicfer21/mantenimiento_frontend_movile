@@ -53,6 +53,9 @@ const ButtonLink = ({ to, title, icon }) => {
 };
 
 const ButtonBar = () => {
+
+  
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>

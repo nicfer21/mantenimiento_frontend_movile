@@ -115,7 +115,6 @@ const PartsSection = ({ idMachine, token }) => {
           },
         });
         setParts(rs.data);
-        console.log(rs.data);
       } catch (error) {
         console.log(error);
       }
@@ -154,7 +153,6 @@ const SubpartSection = ({ idPart, token }) => {
           },
         });
         setSubparts(rs.data);
-        console.log(rs.data);
       } catch (error) {
         console.log(error);
       }
