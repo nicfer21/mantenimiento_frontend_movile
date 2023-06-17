@@ -141,6 +141,7 @@ const PartsSection = ({ idMachine, token }) => {
     </View>
   );
 };
+
 const SubpartSection = ({ idPart, token }) => {
   const [subparts, setSubparts] = useState([]);
 
@@ -200,35 +201,33 @@ const MachineScreen = () => {
   }, []);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.machineContainer}>
-          <Text style={styles.titulo}>seleccione la maquina</Text>
+    <View style={styles.container}>
+      <View style={styles.machineContainer}>
+        <Text style={styles.titulo}>seleccione la maquina</Text>
 
-          <Picker
-            selectedValue={selectedValue}
-            onValueChange={(itemValue) => setSelectedValue(itemValue)}
-            style={styles.picker}
-          >
-            {data.map((maquina) => {
-              return (
-                <Picker.Item
-                  key={maquina.idMachine}
-                  label={`${maquina.idMachine} - ${maquina.name}`}
-                  value={maquina.idMachine}
-                  style={styles.pickerItem}
-                />
-              );
-            })}
-          </Picker>
-          <MachineSection idMachine={selectedValue} token={token} />
-        </View>
-
-        <View style={styles.infoContainer}>
-          <PartsSection idMachine={selectedValue} token={token} />
-        </View>
+        <Picker
+          selectedValue={selectedValue}
+          onValueChange={(itemValue) => setSelectedValue(itemValue)}
+          style={styles.picker}
+        >
+          {data.map((maquina) => {
+            return (
+              <Picker.Item
+                key={maquina.idMachine}
+                label={`${maquina.idMachine} - ${maquina.name}`}
+                value={maquina.idMachine}
+                style={styles.pickerItem}
+              />
+            );
+          })}
+        </Picker>
+        <MachineSection idMachine={selectedValue} token={token} />
       </View>
-    </ScrollView>
+
+      <View style={styles.infoContainer}>
+        <PartsSection idMachine={selectedValue} token={token} />
+      </View>
+    </View>
   );
 };
 

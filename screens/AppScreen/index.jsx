@@ -1,8 +1,15 @@
 import { Route, Routes, useNavigate } from "react-router-native";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Alert,
+  ScrollView,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import AppBar from "../../components/AppBar";
 import ButtonBar from "../../components/ButtonBar";
@@ -11,10 +18,14 @@ import { ruta } from "../../src/config.js";
 import HomeScreen from "../../screens/HomeScreen";
 import UserProfile from "../../screens/UserProfile";
 import MachineScreen from "../../screens/MachineScreen";
+import RequestScreen from "../../screens/RequestScreen";
+import ViewRequestScreen from "../../screens/ViewRequestScreen";
+
 import colors from "../../src/colors";
 
 const RoutesComponent = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const tryCon = setInterval(async () => {
@@ -25,7 +36,7 @@ const RoutesComponent = () => {
     const validacionConeccion = async () => {
       try {
         const token = await AsyncStorage.getItem("@token");
-
+        setToken(token);
         const rs = await axios.get(`${ruta}/prueba`, {
           headers: {
             token: token,
@@ -45,11 +56,15 @@ const RoutesComponent = () => {
   return (
     <View style={styles.container}>
       <AppBar />
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/machine" element={<MachineScreen />} />
-      </Routes>
+      <ScrollView>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/machine" element={<MachineScreen />} />
+          <Route path="/setrequest" element={<RequestScreen />} />
+          <Route path="/viewrequest" element={<ViewRequestScreen />} />
+        </Routes>
+      </ScrollView>
       <ButtonBar />
     </View>
   );
