@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 const RequestScreen = () => {
   const [token, setToken] = useState("");
