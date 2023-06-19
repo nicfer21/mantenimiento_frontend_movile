@@ -20,6 +20,7 @@ import UserProfile from "../../screens/UserProfile";
 import MachineScreen from "../../screens/MachineScreen";
 import RequestScreen from "../../screens/RequestScreen";
 import ViewRequestScreen from "../../screens/ViewRequestScreen";
+import ProcedureScreen from "../../screens/ProcedureScreen";
 
 import colors from "../../src/colors";
 
@@ -63,6 +64,7 @@ const RoutesComponent = () => {
           <Route path="/machine" element={<MachineScreen />} />
           <Route path="/setrequest" element={<RequestScreen />} />
           <Route path="/viewrequest" element={<ViewRequestScreen />} />
+          <Route path="/procedure" element={<ProcedureScreen />} />
         </Routes>
       </ScrollView>
       <ButtonBar />

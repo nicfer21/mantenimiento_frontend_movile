@@ -39,7 +39,7 @@ const ButtonLink = ({ to, title, icon }) => {
         />
         <Text
           style={{
-            fontSize: 10,
+            fontSize: 6,
             textAlign: "center",
             fontWeight: `${styleLink.fontW}`,
             color: `${styleLink.color}`,
@@ -67,6 +67,11 @@ const ButtonBar = () => {
           to={"/app/viewrequest/"}
           title={"Solicitudes"}
           icon={"documents"}
+        />
+        <ButtonLink
+          to={"/app/procedure/"}
+          title={"Procedimientos"}
+          icon={"document-text"}
         />
 
         <ButtonLink to={"/app/profile/"} title={"Perfil"} icon={"md-person"} />

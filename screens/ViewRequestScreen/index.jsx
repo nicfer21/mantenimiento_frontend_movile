@@ -44,8 +44,13 @@ const ImageRequest = ({ token, link }) => {
   }, [link]);
 
   return (
-    <View style={styles.imageView}>
-      {imageData && <Image source={{ uri: imageData }} style={styles.image} />}
+    <View style={styles.profileText}>
+      <Text style={styles.profileTag}>Evidencia </Text>
+      <View style={styles.imageView}>
+        {imageData && (
+          <Image source={{ uri: imageData }} style={styles.image} />
+        )}
+      </View>
     </View>
   );
 };
@@ -84,6 +89,7 @@ const RequestModalContent = ({ id, token, toggle, settoggle }) => {
           hora: hora,
         });
         jwtDecode(token).levelWork === 1 ? setLevel(true) : setLevel(false);
+       
       } catch (error) {
         console.log(error);
       }
@@ -145,24 +151,76 @@ const RequestModalContent = ({ id, token, toggle, settoggle }) => {
         title="Estado"
         value={datos && datos.requestState === 1 ? "Visto" : "No visto"}
       />
-      <DataRow title="descripcion" value={datos && datos.description} />
 
       {level && level ? (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => changeRequestState()}
-        >
-          <Text
+        datos.requestState === 1 ? (
+          <TouchableOpacity
             style={{
-              color: colors.white,
-              fontWeight: "bold",
-              textTransform: "uppercase",
+              backgroundColor: colors.danger,
+              padding: 10,
+              paddingHorizontal: 10,
+              marginTop: 10,
+              borderRadius: 10,
+              shadowColor: colors.grey[5],
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+              alignItems: "center",
+              alignSelf: "center",
             }}
+            onPress={() => changeRequestState()}
           >
-            Cambiar estado
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: colors.white,
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            >
+              Cambiar estado a{" "}
+              {datos && datos.requestState === 1 ? "No visto" : "Visto"}
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{
+              backgroundColor: colors.success,
+              padding: 10,
+              paddingHorizontal: 10,
+              marginTop: 10,
+              borderRadius: 10,
+              shadowColor: colors.grey[5],
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+              alignItems: "center",
+              alignSelf: "center",
+            }}
+            onPress={() => changeRequestState()}
+          >
+            <Text
+              style={{
+                color: colors.white,
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            >
+              Cambiar estado a{" "}
+              {datos && datos.requestState === 1 ? "No visto" : "Visto"}
+            </Text>
+          </TouchableOpacity>
+        )
       ) : null}
+
+      <DataRow title="descripcion" value={datos && datos.description} />
 
       <ImageRequest link={datos && datos.image} token={token} />
     </View>
@@ -377,15 +435,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  image: { width: "100%", height: "100%", resizeMode: "cover" },
+  image: { width: "100%", height: "100%", resizeMode: "contain" },
   imageView: {
-    width: 250,
     height: 250,
-    borderRadius: 10,
-    overflow: "hidden",
-    borderWidth: 3,
-    borderColor: colors.grey[3],
-    marginVertical: 10,
+    width: 250,
     alignSelf: "center",
+    overflow: "hidden",
   },
 });

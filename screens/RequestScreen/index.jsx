@@ -18,6 +18,15 @@ import colors from "../../src/colors";
 import { ruta } from "../../src/config";
 import * as ImagePicker from "expo-image-picker";
 
+const RowFormRequest = ({ children, title }) => {
+  return (
+    <View>
+      <Text style={styles.textForm}>{title}</Text>
+      {children}
+    </View>
+  );
+};
+
 const RequestScreen = () => {
   const [token, setToken] = useState("");
   const [idWorker, setIdWorker] = useState("");
@@ -147,112 +156,112 @@ const RequestScreen = () => {
             borderColor: colors.grey[0],
           }}
         >
-          <Text style={styles.textForm}>Asunto de la solicitud</Text>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                placeholder="Asunto"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                style={styles.inputForm}
-              />
-            )}
-            name="title"
-          />
-          {errors.title && (
-            <Text style={styles.textError}>Asunto incompleto</Text>
-          )}
-
-          <Text style={styles.textForm}>Lugar donde ocurrio</Text>
-
-          <Picker
-            selectedValue={selectedPlace}
-            onValueChange={(itemValue) => setSelectedPlace(itemValue)}
-            style={styles.picker}
-          >
-            {place.map((lugar) => {
-              return (
-                <Picker.Item
-                  key={lugar.idPlace}
-                  label={lugar.name}
-                  value={lugar.idPlace}
-                  style={styles.pickerItem}
-                />
-              );
-            })}
-          </Picker>
-
-          <Text style={styles.textForm}>Maquina en cuestión</Text>
-          <Picker
-            selectedValue={selectedMachine}
-            onValueChange={(itemValue) => setSelectedMachine(itemValue)}
-            style={styles.picker}
-          >
-            {machine.map((maquina) => {
-              return (
-                <Picker.Item
-                  key={maquina.idMachine}
-                  label={`${maquina.idMachine} - ${maquina.name}`}
-                  value={maquina.idMachine}
-                  style={styles.pickerItem}
-                />
-              );
-            })}
-          </Picker>
-
-          <Text style={styles.textForm}>Descripcion de la solicitud</Text>
-
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                placeholder="Descripcion"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                style={styles.inputForm}
-                autoCorrect
-                multiline={true}
-                numberOfLines={5}
-              />
-            )}
-            name="description"
-          />
-          {errors.description && (
-            <Text style={styles.textError}>Descripcion incompleta</Text>
-          )}
-
-          <Text style={styles.textForm}>Seleccione la evidencia</Text>
-          <Text
-            style={{
-              fontSize: 10,
-              paddingHorizontal: 5,
-              color: colors.grey[2],
-            }}
-          >
-            (mantega precionado para cambiar de imagen, foto horizontal como se
-            muestra en el ejemplo)
-          </Text>
-
-          <TouchableOpacity onLongPress={openImagePickerAsync}>
-            <Image
-              style={styles.imagen}
-              source={{
-                uri:
-                  selectedImage !== null
-                    ? selectedImage.localUri
-                    : "https://picsum.photos/1280/720",
+          <RowFormRequest title="Asunto de la solicitud">
+            <Controller
+              control={control}
+              rules={{
+                required: true,
               }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  placeholder="Asunto"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  style={styles.inputForm}
+                />
+              )}
+              name="title"
             />
-          </TouchableOpacity>
+            {errors.title && (
+              <Text style={styles.textError}>Asunto incompleto</Text>
+            )}
+          </RowFormRequest>
+
+          <RowFormRequest title="Lugar donde ocurrio">
+            <Picker
+              selectedValue={selectedPlace}
+              onValueChange={(itemValue) => setSelectedPlace(itemValue)}
+              style={styles.picker}
+            >
+              {place.map((lugar) => {
+                return (
+                  <Picker.Item
+                    key={lugar.idPlace}
+                    label={lugar.name}
+                    value={lugar.idPlace}
+                    style={styles.pickerItem}
+                  />
+                );
+              })}
+            </Picker>
+          </RowFormRequest>
+          <RowFormRequest title="Maquina en cuestión">
+            <Picker
+              selectedValue={selectedMachine}
+              onValueChange={(itemValue) => setSelectedMachine(itemValue)}
+              style={styles.picker}
+            >
+              {machine.map((maquina) => {
+                return (
+                  <Picker.Item
+                    key={maquina.idMachine}
+                    label={`${maquina.idMachine} - ${maquina.name}`}
+                    value={maquina.idMachine}
+                    style={styles.pickerItem}
+                  />
+                );
+              })}
+            </Picker>
+          </RowFormRequest>
+          <RowFormRequest title="Descripcion de la solicitud">
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  placeholder="Descripcion"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  style={styles.inputForm}
+                  autoCorrect
+                  multiline={true}
+                  numberOfLines={5}
+                />
+              )}
+              name="description"
+            />
+            {errors.description && (
+              <Text style={styles.textError}>Descripcion incompleta</Text>
+            )}
+          </RowFormRequest>
+          <RowFormRequest title="Seleccione la evidencia">
+            <Text
+              style={{
+                fontSize: 10,
+                paddingHorizontal: 5,
+                color: colors.grey[2],
+              }}
+            >
+              (mantega precionado para cambiar de imagen, foto horizontal como
+              se muestra en el ejemplo)
+            </Text>
+
+            <TouchableOpacity onLongPress={openImagePickerAsync}>
+              <Image
+                style={styles.imagen}
+                source={{
+                  uri:
+                    selectedImage !== null
+                      ? selectedImage.localUri
+                      : "https://picsum.photos/1280/720",
+                }}
+              />
+            </TouchableOpacity>
+          </RowFormRequest>
 
           <TouchableOpacity
             style={styles.buttonForm}
