@@ -263,7 +263,7 @@ const RequestRow = ({ id, date, state, machine, token, toggle, settoggle }) => {
   );
 };
 
-const RequestScreen = () => {
+const ViewRequestScreen = () => {
   const [token, setToken] = useState("");
   const [data, setData] = useState(null);
   const [toggleState, setToggleState] = useState(false);
@@ -311,7 +311,7 @@ const RequestScreen = () => {
   );
 };
 
-export default RequestScreen;
+export default ViewRequestScreen;
 
 const styles = StyleSheet.create({
   container: {

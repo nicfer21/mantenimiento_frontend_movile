@@ -203,7 +203,7 @@ const MachineScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.machineContainer}>
-        <Text style={styles.titulo}>seleccione la maquina</Text>
+        <Text style={styles.titulo}>maquinas</Text>
 
         <Picker
           selectedValue={selectedValue}
