@@ -21,6 +21,7 @@ import MachineScreen from "../../screens/MachineScreen";
 import RequestScreen from "../../screens/RequestScreen";
 import ViewRequestScreen from "../../screens/ViewRequestScreen";
 import ProcedureScreen from "../../screens/ProcedureScreen";
+import CalendarScreen from "../../screens/CalendarScreen";
 
 import colors from "../../src/colors";
 
@@ -31,7 +32,6 @@ const RoutesComponent = () => {
   useEffect(() => {
     const tryCon = setInterval(async () => {
       await validacionConeccion();
-      console.log("Ready");
     }, 10000);
 
     const validacionConeccion = async () => {
@@ -44,7 +44,7 @@ const RoutesComponent = () => {
           },
           timeout: 5000,
         });
-        clearInterval(tryCon);
+        console.log("Ready");
       } catch (error) {
         clearInterval(tryCon);
         Alert.alert("Error de coneccion", "Inicie session de nuevo");
@@ -57,16 +57,15 @@ const RoutesComponent = () => {
   return (
     <View style={styles.container}>
       <AppBar />
-      <ScrollView>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/machine" element={<MachineScreen />} />
-          <Route path="/setrequest" element={<RequestScreen />} />
-          <Route path="/viewrequest" element={<ViewRequestScreen />} />
-          <Route path="/procedure" element={<ProcedureScreen />} />
-        </Routes>
-      </ScrollView>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/machine" element={<MachineScreen />} />
+        <Route path="/setrequest" element={<RequestScreen />} />
+        <Route path="/viewrequest" element={<ViewRequestScreen />} />
+        <Route path="/procedure" element={<ProcedureScreen />} />
+        <Route path="/calendar" element={<CalendarScreen />} />
+      </Routes>
       <ButtonBar />
     </View>
   );

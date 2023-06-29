@@ -201,33 +201,35 @@ const MachineScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.machineContainer}>
-        <Text style={styles.titulo}>maquinas</Text>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.machineContainer}>
+          <Text style={styles.titulo}>maquinas</Text>
 
-        <Picker
-          selectedValue={selectedValue}
-          onValueChange={(itemValue) => setSelectedValue(itemValue)}
-          style={styles.picker}
-        >
-          {data.map((maquina) => {
-            return (
-              <Picker.Item
-                key={maquina.idMachine}
-                label={`${maquina.idMachine} - ${maquina.name}`}
-                value={maquina.idMachine}
-                style={styles.pickerItem}
-              />
-            );
-          })}
-        </Picker>
-        <MachineSection idMachine={selectedValue} token={token} />
-      </View>
+          <Picker
+            selectedValue={selectedValue}
+            onValueChange={(itemValue) => setSelectedValue(itemValue)}
+            style={styles.picker}
+          >
+            {data.map((maquina) => {
+              return (
+                <Picker.Item
+                  key={maquina.idMachine}
+                  label={`${maquina.idMachine} - ${maquina.name}`}
+                  value={maquina.idMachine}
+                  style={styles.pickerItem}
+                />
+              );
+            })}
+          </Picker>
+          <MachineSection idMachine={selectedValue} token={token} />
+        </View>
 
-      <View style={styles.infoContainer}>
-        <PartsSection idMachine={selectedValue} token={token} />
+        <View style={styles.infoContainer}>
+          <PartsSection idMachine={selectedValue} token={token} />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

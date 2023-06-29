@@ -5,9 +5,12 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { Link, useLocation, useNavigate } from "react-router-native";
+import { useLocation, useNavigate } from "react-router-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
+
 import colors from "../../src/colors";
 
 const ButtonLink = ({ to, title, icon }) => {
@@ -53,6 +56,15 @@ const ButtonLink = ({ to, title, icon }) => {
 };
 
 const ButtonBar = () => {
+  const [levelWork, setLevelWork] = useState(2);
+  useEffect(() => {
+    const getToken = async () => {
+      const token = await AsyncStorage.getItem("@token");
+      const payload = jwtDecode(token);
+      setLevelWork(payload.levelWork);
+    };
+    getToken();
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -73,6 +85,20 @@ const ButtonBar = () => {
           title={"Procedimientos"}
           icon={"document-text"}
         />
+
+        <ButtonLink
+          to={"/app/calendar/"}
+          title={"Calendario"}
+          icon={"calendar"}
+        />
+
+        {levelWork === 1 ? (
+          <ButtonLink
+            to={"/app/setorder/"}
+            title={"Orden"}
+            icon={"document-attach"}
+          />
+        ) : null}
 
         <ButtonLink to={"/app/profile/"} title={"Perfil"} icon={"md-person"} />
       </ScrollView>

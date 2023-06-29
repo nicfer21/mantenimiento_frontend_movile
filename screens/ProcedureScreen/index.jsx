@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  ScrollView,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -93,179 +94,183 @@ const ProcedureScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.viewProcedure}>
-        <Text style={styles.titulo}>Lista de Procedimientos</Text>
-        <View
-          style={{
-            borderWidth: 2,
-            padding: 10,
-            borderRadius: 20,
-            borderColor: colors.grey[0],
-          }}
-        >
-          <Text style={styles.textForm}>Seleccione la Maquina</Text>
-          <Picker
-            selectedValue={selectedMachine}
-            onValueChange={(itemValue) => setSelectedMachine(itemValue)}
-            style={styles.picker}
-          >
-            {machine.map((maquina) => {
-              return (
-                <Picker.Item
-                  key={maquina.idMachine}
-                  label={`${maquina.idMachine} - ${maquina.name}`}
-                  value={maquina.idMachine}
-                  style={styles.pickerItem}
-                />
-              );
-            })}
-          </Picker>
-
-          <Text style={styles.textForm}>Seleccione el procedimiento</Text>
-          <Picker
-            selectedValue={selectedProcedure}
-            onValueChange={(itemValue) => setSelectedProcedure(itemValue)}
-            style={styles.picker}
-          >
-            {procedure.map((procedimiento) => {
-              return (
-                <Picker.Item
-                  key={procedimiento.idMaintenanceProcedure}
-                  label={`${procedimiento.idSubPart} -> ${procedimiento.title}`}
-                  value={procedimiento.idMaintenanceProcedure}
-                  style={styles.pickerItem}
-                />
-              );
-            })}
-          </Picker>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              getProcedureData();
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.viewProcedure}>
+          <Text style={styles.titulo}>Lista de Procedimientos</Text>
+          <View
+            style={{
+              borderWidth: 2,
+              padding: 10,
+              borderRadius: 20,
+              borderColor: colors.grey[0],
             }}
           >
-            <Text
-              style={{
-                color: colors.white,
-                fontSize: 10,
-                fontWeight: "bold",
-                textTransform: "uppercase",
+            <Text style={styles.textForm}>Seleccione la Maquina</Text>
+            <Picker
+              selectedValue={selectedMachine}
+              onValueChange={(itemValue) => setSelectedMachine(itemValue)}
+              style={styles.picker}
+            >
+              {machine.map((maquina) => {
+                return (
+                  <Picker.Item
+                    key={maquina.idMachine}
+                    label={`${maquina.idMachine} - ${maquina.name}`}
+                    value={maquina.idMachine}
+                    style={styles.pickerItem}
+                  />
+                );
+              })}
+            </Picker>
+
+            <Text style={styles.textForm}>Seleccione el procedimiento</Text>
+            <Picker
+              selectedValue={selectedProcedure}
+              onValueChange={(itemValue) => setSelectedProcedure(itemValue)}
+              style={styles.picker}
+            >
+              {procedure.map((procedimiento) => {
+                return (
+                  <Picker.Item
+                    key={procedimiento.idMaintenanceProcedure}
+                    label={`${procedimiento.idSubPart} -> ${procedimiento.title}`}
+                    value={procedimiento.idMaintenanceProcedure}
+                    style={styles.pickerItem}
+                  />
+                );
+              })}
+            </Picker>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                getProcedureData();
               }}
             >
-              Buscar
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: colors.white,
+                  fontSize: 10,
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                }}
+              >
+                Buscar
+              </Text>
+            </TouchableOpacity>
 
-          {visible ? (
-            <View style={styles.viewProcedure}>
-              <Text style={styles.titulo}>Informacion del procedimiento</Text>
-              <DataRow
-                title="Codigo del procedimiento"
-                value={procedureData && procedureData.idMaintenanceProcedure}
-              />
-              <DataRow
-                title="titulo del procedimiento"
-                value={procedureData && procedureData.title}
-              />
-              <DataRow
-                title="duracion (minutos)"
-                value={procedureData && procedureData.workload}
-              />
+            {visible ? (
+              <View style={styles.viewProcedure}>
+                <Text style={styles.titulo}>Informacion del procedimiento</Text>
+                <DataRow
+                  title="Codigo del procedimiento"
+                  value={procedureData && procedureData.idMaintenanceProcedure}
+                />
+                <DataRow
+                  title="titulo del procedimiento"
+                  value={procedureData && procedureData.title}
+                />
+                <DataRow
+                  title="duracion (minutos)"
+                  value={procedureData && procedureData.workload}
+                />
 
-              <View style={styles.procedureText}>
-                <Text style={styles.procedureTag}>Hoja de Ruta</Text>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    Linking.openURL(procedureData && procedureData.roadmaps);
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: colors.white,
-                      fontSize: 10,
-                      fontWeight: "bold",
-                      textTransform: "uppercase",
+                <View style={styles.procedureText}>
+                  <Text style={styles.procedureTag}>Hoja de Ruta</Text>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      Linking.openURL(procedureData && procedureData.roadmaps);
                     }}
                   >
-                    Ir a al Documento
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                    <Text
+                      style={{
+                        color: colors.white,
+                        fontSize: 10,
+                        fontWeight: "bold",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Ir a al Documento
+                    </Text>
+                  </TouchableOpacity>
+                </View>
 
-              <View style={styles.procedureText}>
-                <Text style={styles.procedureTag}>Reglamento de seguridad</Text>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    Linking.openURL(procedureData && procedureData.law);
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: colors.white,
-                      fontSize: 10,
-                      fontWeight: "bold",
-                      textTransform: "uppercase",
+                <View style={styles.procedureText}>
+                  <Text style={styles.procedureTag}>
+                    Reglamento de seguridad
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      Linking.openURL(procedureData && procedureData.law);
                     }}
                   >
-                    Ir a al Documento
-                  </Text>
-                </TouchableOpacity>
+                    <Text
+                      style={{
+                        color: colors.white,
+                        fontSize: 10,
+                        fontWeight: "bold",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Ir a al Documento
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                <DataRow
+                  title="Codigo maquina"
+                  value={procedureData && procedureData.idMachine}
+                />
+                <DataRow
+                  title="Maquina"
+                  value={procedureData && procedureData.nameMachine}
+                />
+
+                <DataRow
+                  title="Codigo parte"
+                  value={procedureData && procedureData.idPart}
+                />
+                <DataRow
+                  title="parte"
+                  value={procedureData && procedureData.namePart}
+                />
+
+                <DataRow
+                  title="Codigo subparte"
+                  value={procedureData && procedureData.idSubPart}
+                />
+                <DataRow
+                  title="subparte"
+                  value={procedureData && procedureData.nameSubPart}
+                />
+
+                <DataRow
+                  title="tipo de mantenimiento"
+                  value={procedureData && procedureData.nameStrategy}
+                />
+                <DataRow
+                  title="lugar"
+                  value={procedureData && procedureData.nameSubPart}
+                />
+                <DataRow
+                  title="codigo de encargado"
+                  value={procedureData && procedureData.idWorker}
+                />
+                <DataRow
+                  title="encargado"
+                  value={procedureData && procedureData.longname}
+                />
               </View>
-
-              <DataRow
-                title="Codigo maquina"
-                value={procedureData && procedureData.idMachine}
-              />
-              <DataRow
-                title="Maquina"
-                value={procedureData && procedureData.nameMachine}
-              />
-
-              <DataRow
-                title="Codigo parte"
-                value={procedureData && procedureData.idPart}
-              />
-              <DataRow
-                title="parte"
-                value={procedureData && procedureData.namePart}
-              />
-
-              <DataRow
-                title="Codigo subparte"
-                value={procedureData && procedureData.idSubPart}
-              />
-              <DataRow
-                title="subparte"
-                value={procedureData && procedureData.nameSubPart}
-              />
-
-              <DataRow
-                title="tipo de mantenimiento"
-                value={procedureData && procedureData.nameStrategy}
-              />
-              <DataRow
-                title="lugar"
-                value={procedureData && procedureData.nameSubPart}
-              />
-              <DataRow
-                title="codigo de encargado"
-                value={procedureData && procedureData.idWorker}
-              />
-              <DataRow
-                title="encargado"
-                value={procedureData && procedureData.longname}
-              />
-            </View>
-          ) : (
-            <></>
-          )}
+            ) : (
+              <></>
+            )}
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

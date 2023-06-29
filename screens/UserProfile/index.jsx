@@ -5,6 +5,7 @@ import {
   Alert,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
@@ -87,50 +88,52 @@ const UserProfile = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageView}>
-        {imageData && (
-          <Image source={{ uri: imageData }} style={styles.image} />
-        )}
-      </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.imageView}>
+          {imageData && (
+            <Image source={{ uri: imageData }} style={styles.image} />
+          )}
+        </View>
 
-      <View style={styles.profileDataContainer}>
-        <ProfilePart
-          tag={"id del trabajador"}
-          value={datos.id}
-          icon={"person-circle-outline"}
-        />
-        <ProfilePart tag={"dni"} value={datos.dni} icon={"man-outline"} />
-        <ProfilePart
-          tag={"nombre completo"}
-          value={datos.largename}
-          icon={"document-text-outline"}
-        />
-        <ProfilePart
-          tag={"ocupacion"}
-          value={datos.name}
-          icon={"construct-outline"}
-        />
-        <ProfilePart
-          tag={"nivel de acceso"}
-          value={datos.levelWork}
-          icon={"speedometer-outline"}
-        />
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity style={styles.button} onPress={cerrarSession}>
-            <Text
-              style={{
-                textAlign: "center",
-                color: colors.white,
-                fontWeight: "bold",
-              }}
-            >
-              CERRAR SESION
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.profileDataContainer}>
+          <ProfilePart
+            tag={"id del trabajador"}
+            value={datos.id}
+            icon={"person-circle-outline"}
+          />
+          <ProfilePart tag={"dni"} value={datos.dni} icon={"man-outline"} />
+          <ProfilePart
+            tag={"nombre completo"}
+            value={datos.largename}
+            icon={"document-text-outline"}
+          />
+          <ProfilePart
+            tag={"ocupacion"}
+            value={datos.name}
+            icon={"construct-outline"}
+          />
+          <ProfilePart
+            tag={"nivel de acceso"}
+            value={datos.levelWork}
+            icon={"speedometer-outline"}
+          />
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity style={styles.button} onPress={cerrarSession}>
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: colors.white,
+                  fontWeight: "bold",
+                }}
+              >
+                CERRAR SESION
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
