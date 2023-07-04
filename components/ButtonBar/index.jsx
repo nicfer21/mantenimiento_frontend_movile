@@ -94,7 +94,7 @@ const ButtonBar = () => {
 
         {levelWork === 1 ? (
           <ButtonLink
-            to={"/app/setorder/"}
+            to={"/app/order"}
             title={"Orden"}
             icon={"document-attach"}
           />

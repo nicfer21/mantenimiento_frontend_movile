@@ -22,6 +22,7 @@ import RequestScreen from "../../screens/RequestScreen";
 import ViewRequestScreen from "../../screens/ViewRequestScreen";
 import ProcedureScreen from "../../screens/ProcedureScreen";
 import CalendarScreen from "../../screens/CalendarScreen";
+import OrderScreen from "../../screens/OrderScreen";
 
 import colors from "../../src/colors";
 
@@ -45,6 +46,7 @@ const RoutesComponent = () => {
           timeout: 5000,
         });
         console.log("Ready");
+        clearInterval(tryCon);
       } catch (error) {
         clearInterval(tryCon);
         Alert.alert("Error de coneccion", "Inicie session de nuevo");
@@ -65,6 +67,7 @@ const RoutesComponent = () => {
         <Route path="/viewrequest" element={<ViewRequestScreen />} />
         <Route path="/procedure" element={<ProcedureScreen />} />
         <Route path="/calendar" element={<CalendarScreen />} />
+        <Route path="/order" element={<OrderScreen />} />
       </Routes>
       <ButtonBar />
     </View>

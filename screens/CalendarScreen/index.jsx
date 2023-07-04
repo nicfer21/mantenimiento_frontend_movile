@@ -40,9 +40,10 @@ const CalendarScreen = () => {
                 time: dato.start + " - " + dato.finish,
                 state: dato.stepValue,
                 worker: dato.longname,
+                colorName: dato.name,
+                color: dato.color,
               });
             });
-            console.log(data);
           } catch (error) {
             console.log(error);
           }
@@ -104,9 +105,19 @@ const CalendarScreen = () => {
     return (
       <View style={styles.item}>
         <View style={{ margin: 10 }}>
+          <Text
+            style={{
+              padding: 3,
+              color: item.color,
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            {item.colorName}
+          </Text>
           <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
-          <Text>Horario : {item.time}</Text>
-          <Text>Encargado : {item.worker}</Text>
+          <Text style={{ padding: 3 }}>Horario : {item.time}</Text>
+          <Text style={{ padding: 3 }}>Encargado : {item.worker}</Text>
           {item.state == 1 ? (
             <Text
               style={{
