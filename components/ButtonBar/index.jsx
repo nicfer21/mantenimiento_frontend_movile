@@ -100,6 +100,14 @@ const ButtonBar = () => {
           />
         ) : null}
 
+        {levelWork === 1 ? (
+          <ButtonLink
+            to={"/app/viewreport"}
+            title={"Reporte"}
+            icon={"file-tray-full"}
+          />
+        ) : null}
+
         <ButtonLink to={"/app/profile/"} title={"Perfil"} icon={"md-person"} />
       </ScrollView>
     </View>

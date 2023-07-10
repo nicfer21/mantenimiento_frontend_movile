@@ -105,6 +105,7 @@ const CalendarScreen = () => {
     return (
       <View style={styles.item}>
         <View style={{ margin: 10 }}>
+          <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
           <Text
             style={{
               padding: 3,
@@ -115,7 +116,6 @@ const CalendarScreen = () => {
           >
             {item.colorName}
           </Text>
-          <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
           <Text style={{ padding: 3 }}>Horario : {item.time}</Text>
           <Text style={{ padding: 3 }}>Encargado : {item.worker}</Text>
           {item.state == 1 ? (

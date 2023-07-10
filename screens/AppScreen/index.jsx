@@ -23,6 +23,8 @@ import ViewRequestScreen from "../../screens/ViewRequestScreen";
 import ProcedureScreen from "../../screens/ProcedureScreen";
 import CalendarScreen from "../../screens/CalendarScreen";
 import OrderScreen from "../../screens/OrderScreen";
+import ReportScreen from "../../screens/ReportScreen";
+import ViewReportScreen from "../../screens/ViewReportScreen";
 
 import colors from "../../src/colors";
 
@@ -68,6 +70,8 @@ const RoutesComponent = () => {
         <Route path="/procedure" element={<ProcedureScreen />} />
         <Route path="/calendar" element={<CalendarScreen />} />
         <Route path="/order" element={<OrderScreen />} />
+        <Route path="/report/:idOrder" element={<ReportScreen />} />
+        <Route path="/viewreport/" element={<ViewReportScreen />} />
       </Routes>
       <ButtonBar />
     </View>
