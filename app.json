@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +21,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.mantenimiento.textileria"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +37,27 @@
           "photosPermission": "La aplicacion necesita la autorizacion para usar todas sus funcionalidades"
         }
       ]
-    ]
+    ],
+    "build": {
+      "preview": {
+        "android": {
+          "buildType": "apk"
+        }
+      },
+      "preview2": {
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
+      },
+      "preview3": {
+        "developmentClient": true
+      },
+      "production": {}
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ac328de-9d43-47a1-8fc4-edd0f7b7c1dd"
+      }
+    }
   }
 }
