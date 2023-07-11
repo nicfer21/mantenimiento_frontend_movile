@@ -54,8 +54,7 @@ const OrderRowData = ({ data, machine }) => {
       }, 0);
 
       if (ordenes === 0) {
-        const progreso = 0;
-        setCompleted(progreso);
+        setCompleted(0);
       } else {
         const progreso = ((ordenes - sinCompletar) / ordenes).toFixed(4);
         setCompleted(progreso);
@@ -72,6 +71,8 @@ const OrderRowData = ({ data, machine }) => {
         flexDirection: "row",
         marginVertical: 2,
         padding: 3,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Text style={{ width: 60, marginLeft: 15 }}>{machine}</Text>
